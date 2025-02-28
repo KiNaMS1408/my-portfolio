@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100%;
+    scroll-behavior: smooth;
+    background-color: #262e34;
+    color: #f8f5ec;
+  }
+  
+  .snap-section {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+  }
