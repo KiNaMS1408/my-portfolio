@@ -24,7 +24,6 @@ export class AppComponent {
   title = 'my-portfolio';
   @HostListener('wheel', ['$event'])
   onScroll(event: WheelEvent) {
-    // Verhindert das Scrollen nur, wenn du es manuell steuern möchtest.
     const sections: NodeListOf<HTMLElement> = document.querySelectorAll('.snap-section');
     let closestSection: HTMLElement | null = null;
     let minDistance = Number.MAX_VALUE;
@@ -41,16 +40,16 @@ export class AppComponent {
   
     if (closestSection && minDistance > 100) {
       this.smoothScroll(closestSection);
-      event.preventDefault();  // Blockiert nur das Standard-Scrollen, wenn wir die benutzerdefinierte Logik ausführen
+      event.preventDefault();
     }
   }
   
-  // Die Methode smoothScroll bleibt wie vorher.
+
   smoothScroll(target: HTMLElement) {
     const start = window.scrollY;
     const end = target.getBoundingClientRect().top + window.scrollY;
     const distance = end - start;
-    const duration = 3000; // Dauer der Animation in Millisekunden (1 Sekunde)
+    const duration = 1000;
     let startTime: number | null = null;
   
     function animateScroll(timestamp: number) {
@@ -63,7 +62,7 @@ export class AppComponent {
       if (progress < duration) {
         requestAnimationFrame(animateScroll);
       } else {
-        window.scrollTo(0, end); // Um sicherzustellen, dass das Ziel erreicht wird
+        window.scrollTo(0, end);
       }
     }
   
