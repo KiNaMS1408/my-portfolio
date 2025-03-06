@@ -1,11 +1,101 @@
 .header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+  margin-top: -64px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    >.ellipse, .profilPicture, .logo{
+      width: clamp(100%, 30vw, 70rem);
+      scale: 1;
+      @media (min-width: 860px){
+        max-width: 850px;
+      }
+    }
+  }
+
+  .ellipse{
+    position: absolute;
+    z-index: 0;
+  }
+
+  .profilPicture{
+    height: 75%;
   }
   
+  .logoBurger {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95%;
+
+    >div{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+}
+
   nav {
     display: flex;
     justify-content: space-between;
   }
   
+  .hamRotate.active {
+    transform: rotate(45deg);
+  }
+  
+  .line {
+    fill:none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: var(--text-color);
+    stroke-width:1.5;
+    stroke-linecap:round;
+  }
+  
+  .ham8 .top {
+    stroke-dasharray: 40 160;
+  }
+  .ham8 .middle {
+    stroke-dasharray: 40 142;
+    transform-origin: 50%;
+    transition: transform 400ms;
+  }
+  .ham8 .bottom {
+    stroke-dasharray: 40 85;
+    transform-origin: 50%;
+    transition: transform 400ms, stroke-dashoffset 400ms;
+  }
+  .ham8.active .top {
+    stroke-dashoffset: -64px;
+  }
+  .ham8.active .middle {
+    //stroke-dashoffset: -20px;
+    transform: rotate(90deg);
+  }
+  .ham8.active .bottom {
+    stroke-dashoffset: -64px;
+  }
+  
+  .mdc-form-field{
+    flex-direction: column;
+  }
+
+  ::ng-deep mat-slide-toggle {
+      >div{
+        flex-direction: column;
+      }
+  }
+  
+  .grid {
+    display: grid;
+    justify-items: center;
+    >img{
+      transition: all 0.5s ease;
+      rotate: 180deg;
+
+      &:hover{
+        scale: 1.25;
+      }
+    }
+  }
