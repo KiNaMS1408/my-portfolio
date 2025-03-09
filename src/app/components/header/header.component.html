@@ -34,17 +34,38 @@
         *ngIf="!isMenuOpen" 
         src="../../../assets/svg/ellipse35.svg" 
         alt="Hintergrund normal" />
+        <img 
+        class="profilPicture" 
+        *ngIf="!isMenuOpen" 
+        src="../../../assets/pictures/me1.png" alt="Picture of me" />
     
       <img 
-        class="ellipse" 
+        class="ellipse menu" 
         *ngIf="isMenuOpen" 
         src="../../../assets/svg/ellipse35.svg" 
         alt="Menü-Hintergrund" />
-    
-      <img class="profilPicture" src="../../../assets/pictures/me1 1000x1500.png" alt="Picture of me" />
+      <img 
+      class="profilPicture" style="opacity: 0;" 
+      *ngIf="isMenuOpen" 
+      src="../../../assets/pictures/me1empty.png" alt="Picture of me" />
+
 
         <p>Franz Neußer</p><br>
         <p>FRONTEND DEVELOPER</p>
         <img src="../../../assets/svg/arrow.svg" alt="">
+
+
+        <nav *ngIf="isMenuOpen" class="nav-menu">
+          <ul>
+            <li><a href="#why-me">Why me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="language-switch">
+            <button (click)="setLanguage('de')">DE</button>
+            <button (click)="setLanguage('en')">EN</button>
+          </div>
+        </nav>
+      <!-- </div> -->
       </div>
-0

@@ -11,21 +11,36 @@ import { CommonModule, NgIf } from "@angular/common";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  // showToggle = true;
+  showToggle = true;
   isMenuOpen = false;
+  selectedLanguage = 'en';
 
   constructor(public themeService: ThemeService) {}
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
   }
+
   get themeText(): string {
     return this.themeService.isLightMode ? 'Light Mode' : 'Dark Mode';
   }
+
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-    console.log(this.isMenuOpen);
+  }
+
+  setLanguage(lang: string): void {
+    this.selectedLanguage = lang;
+    localStorage.setItem('language', lang);
+    console.log('Language set to', lang);
     
+  }
+
+  ngOnInit(): void {
+    const savedLang = localStorage.getItem('language');
+    if (savedLang) {
+      this.selectedLanguage = savedLang;
+    }
   }
 }
 
