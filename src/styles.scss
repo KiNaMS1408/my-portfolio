@@ -25,6 +25,8 @@
   --text-color: #262e34;
 }
 
+$emptyButtonBackground: rgba(38, 46, 52, 0.12);
+
 
 html,
 body {
@@ -46,8 +48,17 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  overflow-x: hidden;}
 
 .text{
   color: var(--text-color);
+}
+
+@media (max-width: 400px) {
+  body{
+    overflow-x: hidden;
+  }
 }

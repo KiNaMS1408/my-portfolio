@@ -5,6 +5,10 @@ import { WhyMeComponent } from './components/why-me/why-me.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { TeamplayerComponent } from './components/teamplayer/teamplayer.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ThemeToggleComponent } from './services/theme-toggle.component/theme-toggle.component.component';
+
 
 @Component({
   selector: 'app-root',
@@ -15,10 +19,14 @@ import { ContactComponent } from './components/contact/contact.component';
     WhyMeComponent,
     ProjectsComponent,
     TeamplayerComponent,
-    ContactComponent
+    ContactComponent,
+    CommonModule,
+    FormsModule,
+    // ThemeToggleComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
+
 })
 export class AppComponent {
   title = 'my-portfolio';
