@@ -1,15 +1,20 @@
 <div class="logoBurger">
-      <div>      
-            <img class="logo" src="../../../assets/svg/Logo.svg" alt="" /><br>F.Neußer<br>DEVELOPER
-      </div>
-
   <div>
+    <img
+      class="logo"
+      src="../../../assets/svg/Logo.svg"
+      alt=""
+    /><br />F.Neußer<br />DEVELOPER
+  </div>
+
+  <div class="burger">
     <svg
       class="ham hamRotate ham8"
       viewBox="0 0 100 100"
       width="80"
       (click)="toggleMenu()"
-      [class.active]="isMenuOpen">
+      [class.active]="isMenuOpen"
+    >
       <path
         class="line top"
         d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"
@@ -20,52 +25,41 @@
         d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"
       />
     </svg>
-      <mat-slide-toggle 
-  [checked]="themeService.isLightMode" 
-  (change)="toggleTheme()">
-  <p class="text"> {{ themeText }}</p>
-</mat-slide-toggle>
   </div>
 </div>
 
-<div class="header">
-      <img 
-        class="ellipse" 
-        *ngIf="!isMenuOpen" 
-        src="../../../assets/svg/ellipse35.svg" 
-        alt="Hintergrund normal" />
-        <img 
-        class="profilPicture" 
-        *ngIf="!isMenuOpen" 
-        src="../../../assets/pictures/me1.png" alt="Picture of me" />
-    
-      <img 
-        class="ellipse menu" 
-        *ngIf="isMenuOpen" 
-        src="../../../assets/svg/ellipse35.svg" 
-        alt="Menü-Hintergrund" />
-      <img 
-      class="profilPicture" style="opacity: 0;" 
-      *ngIf="isMenuOpen" 
-      src="../../../assets/pictures/me1empty.png" alt="Picture of me" />
-
-
-        <p>Franz Neußer</p><br>
-        <p>FRONTEND DEVELOPER</p>
-        <img src="../../../assets/svg/arrow.svg" alt="">
-
-
-        <nav *ngIf="isMenuOpen" class="nav-menu">
-          <ul>
-            <li><a href="#why-me">Why me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <div class="language-switch">
-            <button (click)="setLanguage('de')">DE</button>
-            <button (click)="setLanguage('en')">EN</button>
-          </div>
-        </nav>
-      <!-- </div> -->
-      </div>
+<div class="header" *ngIf="!isMenuOpen">
+  <img
+    class="profilPicture"
+    src="../../../assets/pictures/me1.png"
+    alt="Picture of me"
+  />
+  <img
+    class="ellipse scale"
+    src="../../../assets/svg/ellipse35.svg"
+    alt="Hintergrund normal"
+  />
+</div>
+<div class="header" *ngIf="isMenuOpen">
+  <img
+    class="ellipse menu"
+    src="../../../assets/svg/ellipse35.svg"
+    alt="Menü-Hintergrund"
+  />
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="#why-me">Why me</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="language-switch">
+      <button (click)="setLanguage('de')">DE</button>
+      <button (click)="setLanguage('en')">EN</button>
+    </div>
+  </nav>
+</div>
+<p>Franz Neußer</p>
+<br />
+<p>FRONTEND DEVELOPER</p>
+<img src="../../../assets/svg/arrow.svg" class="arrowDown" alt="" />

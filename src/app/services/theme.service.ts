@@ -1,45 +1,25 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private lightModeClass = 'light-mode';
-  private darkModeClass = 'dark-mode';
+  private isLightModeSubject = new BehaviorSubject<boolean>(this.getStoredTheme());
+  isLightMode$ = this.isLightModeSubject.asObservable();
 
-  public isLightMode = false;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(DOCUMENT) private document: Document) {
-    this.loadTheme();
-  }
-
-  toggleTheme(): void {
-    this.isLightMode = !this.isLightMode;
-    this.updateTheme();
-  }
-
-  private updateTheme(): void {
-    if (this.isLightMode) {
-      this.document.body.classList.add(this.lightModeClass);
-      this.document.body.classList.remove(this.darkModeClass);
-      if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('theme', 'light');
-      }
-    } else {
-      this.document.body.classList.add(this.darkModeClass);
-      this.document.body.classList.remove(this.lightModeClass);
-      if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('theme', 'dark');
-      }
+  toggleTheme() {
+    const newMode = !this.isLightModeSubject.value;
+    this.isLightModeSubject.next(newMode);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('isLightMode', JSON.stringify(newMode));
     }
+    document.body.classList.toggle('dark-theme', !newMode);
   }
 
-  private loadTheme(): void {
-    if (isPlatformBrowser(this.platformId)) {
-    const savedTheme = localStorage.getItem('theme');
-    this.isLightMode = savedTheme === 'light';
-    this.updateTheme();
+  private getStoredTheme(): boolean {
+    if (typeof window === 'undefined') {
+      return true;
     }
+    const storedTheme = localStorage.getItem('isLightMode');
+    return storedTheme ? JSON.parse(storedTheme) : true;
   }
 }
